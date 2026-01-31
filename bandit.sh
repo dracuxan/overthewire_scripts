@@ -22,6 +22,7 @@ init_config() {
 # ---------- args ----------
 
 parse_args() {
+
     while [[ $# -gt 0 ]]; do
         case "$1" in
         --level)
@@ -34,6 +35,10 @@ parse_args() {
             ;;
         --sync)
             SYNC_ONLY=true
+            shift
+            ;;
+        --pull)
+            PULL_ONLY=true
             shift
             ;;
         *)
@@ -99,6 +104,18 @@ sync_passwords() {
     echo "syncing passwords to $SYNC_HOST:$SYNC_DIR"
     rsync -av "$PASS_DIR/" "$SYNC_HOST:$SYNC_DIR/"
     echo "sync complete"
+}
+
+pull_passwords() {
+    [[ -n "$SYNC_HOST" && -n "$SYNC_DIR" ]] || {
+        echo "sync config missing"
+        echo "set SYNC_HOST and SYNC_DIR in $CONFIG_FILE"
+        exit 1
+    }
+
+    echo "pulling passwords from $SYNC_HOST:$SYNC_DIR"
+    rsync -av "$SYNC_HOST:$SYNC_DIR/" "$PASS_DIR/"
+    echo "pull complete"
 }
 
 # ---------- run ----------
@@ -173,6 +190,11 @@ main() {
 
     if $SYNC_ONLY; then
         sync_passwords
+        exit 0
+    fi
+
+    if [[ "${PULL_ONLY:-false}" == "true" ]]; then
+        pull_passwords
         exit 0
     fi
 
