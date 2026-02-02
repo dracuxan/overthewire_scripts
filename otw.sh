@@ -227,7 +227,7 @@ sync_all() {
         if [[ -n "$s_host" && -n "$s_dir" ]]; then
             echo "[$g] syncing to $s_host..."
             local g_pass_dir="$PASS_DIR/$g"
-            rsync -av "$g_pass_dir/" "$s_host:$s_dir/$g/"
+            rsync -av "$g_pass_dir/" "$s_host:$s_dir/"
         else
             echo "[$g] skipped: sync config missing"
         fi
