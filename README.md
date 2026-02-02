@@ -1,8 +1,7 @@
 # Playing OverTheWire Wargames
 
-## About bandit.sh
-
-This script simplifies playing the [OverTheWire Bandit wargame](https://overthewire.org/wargames/bandit/) by handling connection details and managing password storage automatically.
+## About overthewire.sh
+This script simplifies playing [OverTheWire Wargames](https://overthewire.org/wargames/) (currently supports **Bandit** and **Leviathan**) by handling connection details and managing password storage automatically.
 
 ## How it works
 
@@ -20,17 +19,19 @@ Ensure you have the following installed:
 
 ### Quick Install
 
-To install the script globally:
+To install the script globally as `otw`:
 
 ```bash
 ./install.sh
 ```
 
 ## Usage
-
 ```bash
-bandit [--level <n>] [--sync] [--pull] [--version] [--help]
+otw --game [bandit|leviathan] [--level <n>] [--sync] [--pull] [--version] [--help]
 ```
+*   **Default Game**: `bandit` (if `--game` is omitted).
+*   **Shortcuts**: You can use `-g b` for bandit or `-g l` for leviathan.
+*   **Sync**: `--sync` and `--pull` now synchronize **ALL** configured games at once.
 
 ## Storage
 
