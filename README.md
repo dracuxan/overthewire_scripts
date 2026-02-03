@@ -1,7 +1,8 @@
 # Playing OverTheWire Wargames
 
 ## About overthewire.sh
-This script simplifies playing [OverTheWire Wargames](https://overthewire.org/wargames/) (currently supports **Bandit** and **Leviathan**) by handling connection details and managing password storage automatically.
+
+This script simplifies playing [OverTheWire Wargames](https://overthewire.org/wargames/) (currently supports **Bandit**, **Leviathan**, and **Narnia**) by handling connection details and managing password storage automatically.
 
 ## How it works
 
@@ -18,6 +19,7 @@ Ensure you have the following installed:
 - `bash`
 
 ### Manual Installation
+
 Since there is no install script, you can set it up manually:
 
 1.  Make the script executable:
@@ -30,16 +32,20 @@ Since there is no install script, you can set it up manually:
     ```
 
 ## Usage
+
 ```bash
 ./otw.sh --game [bandit|leviathan] ...
 ```
+
 OR if symlinked:
+
 ```bash
 otw --game [bandit|leviathan] ...
 ```
-*   **Default Game**: `bandit` (if `--game` is omitted).
-*   **Shortcuts**: You can use `-g b` for bandit or `-g l` for leviathan.
-*   **Sync**: `--sync` and `--pull` now synchronize **ALL** configured games at once.
+
+- **Default Game**: `bandit` (if `--game` is omitted).
+- **Shortcuts**: You can use `-g b` for bandit or `-g l` for leviathan.
+- **Sync**: `--sync` and `--pull` now synchronize **ALL** configured games at once.
 
 ## Storage
 
@@ -80,4 +86,15 @@ SYNC_DIR=""     # Path to remote backup directory
 
 ## Why Sync?
 
-I switch between devices (e.g., Laptop and Termux) sometimes and to prepare for future support of other wargames.
+## Release Notes
+
+### v0.2
+
+- **Multi-Game Support**: Play **Bandit**, **Leviathan**, and **Narnia** using the `--game` flag.
+- **Unified Sync**: `--sync` backsup progress for **all** configured games at once.
+- **Game Completion**: Detects when you finish a game (via `MAX_LEVEL`) and shows a congratulatory message.
+- **Dynamic Configuration**: Easily add new games by dropping a file into `configs/`.
+
+### v0.1
+
+- Initial release supporting Bandit.
